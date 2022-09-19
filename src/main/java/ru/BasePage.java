@@ -25,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public abstract class BasePage<CurrentPage, AbstractSystemPage> implements Clickable<CurrentPage, AbstractSystemPage>,
         Fields<CurrentPage>, CustomAction<CurrentPage>, Waits<CurrentPage>, Assertions<CurrentPage> {
 
-    protected static final long TIMEOUT = 600000L;
+    protected static final long TIMEOUT = 6000L;
 
     protected String textXpath = "//*[contains(text(), '%s')]";
     protected String linkXpath = null;

@@ -23,7 +23,7 @@ public class CustomUtilities {
 
 
 
-    // @Attachment(type="img/png")
+    @Attachment(type="img/png")
     public static byte[] screenshotPage(){
         String name ="screen_" + getDateNow("yyyy_MM_dd_HH_mm_ss");
         String screenshot = Selenide.screenshot(name);

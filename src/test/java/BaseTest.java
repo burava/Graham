@@ -17,11 +17,5 @@ public class BaseTest  {
         capabilities.setCapability(ChromeOptions.CAPABILITY, options);
         Configuration.browserCapabilities = capabilities;
 
-        /*
-        System.setProperty("webdriver.chrome.driver",System.getenv("CHROME_DRIVER"));
-        WebDriver driver;
-        driver = new ChromeDriver(options);
-        setWebDriver(driver);
-         */
     }
 }

@@ -25,18 +25,4 @@ public class LoginSteps extends Section<LoginSteps> {
         return this;
     }
 
-    @Step("проверить значение")
-    public LoginSteps actual1(String value) {
-        mainGrahamPage
-                .clickButton(value, 1);
-        return this;
-    }
-
-    @Step("проверить значение")
-    public LoginSteps actual2(String value) {
-        mainGrahamPage
-
-                .getText("Добавление виджета", (name) -> assertEquals(value, name, "ок"));
-        return this;
-    }
 }

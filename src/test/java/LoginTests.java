@@ -16,7 +16,6 @@ public class LoginTests extends BaseTest {
                 .grahamLogInTest(login,password)
                 .checkExistUser("Бурима Алексей")
                 .checkUserName("Бурима Алексей");
-
     }
 
 }
