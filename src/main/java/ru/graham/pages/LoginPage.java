@@ -4,7 +4,6 @@ import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.$x;
-import static com.codeborne.selenide.Selenide.page;
 
 public class LoginPage {
 
@@ -17,6 +16,7 @@ public class LoginPage {
      */
     @Step("Входим в Graham под пользователем")
     public MainPage login(String username, String password) {
+        $x("/html/body/div[2]/div[3]/div/div/button").click();
         $x("//input[@name = 'login']").setValue(username);
         $x("//input[@name = 'password']").setValue(password);
         //  SelenideElement loginBtn = $x("//button//font[contains(text(), 'Продолжить')]/../..");
