@@ -6,14 +6,11 @@ import interfases.Assertions;
 import interfases.CustomAction;
 import interfases.Waits;
 import io.qameta.allure.Step;
-import ru.Clickable;
-import ru.Fields;
 
 import java.util.function.Consumer;
 
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.page;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * Базовый класс для всех страниц. Реализует основные методы взаимодействия со страницей

@@ -12,7 +12,7 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <junit.jupiter.version>5.7.0-M1</junit.jupiter.version>
-        <qameta.allure>2.13.6</qameta.allure>
+        <qameta.allure>2.17.0</qameta.allure>
         <seleniumhq.selenium>3.141.59</seleniumhq.selenium>
         <aspectj.version>1.9.4</aspectj.version>
         <allure.version>2.13.0</allure.version>
@@ -20,6 +20,7 @@
 
     <dependencies>
         <!-- Test API(s) -->
+        <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
@@ -46,7 +47,6 @@
             <artifactId>selenium-java</artifactId>
             <version>${seleniumhq.selenium}</version>
         </dependency>
-
         <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-junit5 -->
         <dependency>
             <groupId>io.qameta.allure</groupId>
@@ -54,18 +54,37 @@
             <version>${qameta.allure}</version>
         </dependency>
 
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-selenide</artifactId>
+            <version>${qameta.allure}</version>
+        </dependency>
+        <dependency>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-java-commons</artifactId>
+                <version>${qameta.allure}</version>
+                <scope>compile</scope>
+            </dependency>
+
         <!--Для скринов-->
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>2.4</version>
         </dependency>
+
         <dependency>
             <groupId>com.codeborne</groupId>
             <artifactId>selenide</artifactId>
-            <version>5.5.0</version>
+            <version>5.9.0</version>
         </dependency>
 
+        <!-- Для пропертей -->
+        <dependency>
+            <groupId>org.aeonbits.owner</groupId>
+            <artifactId>owner</artifactId>
+            <version>1.0.4</version>
+        </dependency>
     </dependencies>
 
     <build>

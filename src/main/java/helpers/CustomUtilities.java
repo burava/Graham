@@ -21,17 +21,4 @@ public class CustomUtilities {
         return typePage.cast(Selenide.open(url, typePage));
     }
 
-
-
-    @Attachment(type="img/png")
-    public static byte[] screenshotPage(){
-        String name ="screen_" + getDateNow("yyyy_MM_dd_HH_mm_ss");
-        String screenshot = Selenide.screenshot(name);
-        try {
-            return Files.readAllBytes(Paths.get(screenshot));
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-        return new byte[0];
-    }
 }

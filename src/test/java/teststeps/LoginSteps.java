@@ -10,14 +10,6 @@ public class LoginSteps extends Section<LoginSteps> {
         mainGrahamPage = new MainPage();
     }
 
-    @Step("Проврека на существование пользователя")
-    public LoginSteps checkExistUser(String name) {
-        mainGrahamPage
-                .getField("//font[contains(text(),'" + name + "')]");
-        assertNotNull(name, "Пользователь не найден");
-        return this;
-    }
-
     @Step("Проверяем имя пользователя")
     public LoginSteps checkUserName(String value) {
         mainGrahamPage
