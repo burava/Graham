@@ -4,6 +4,7 @@ import io.qameta.allure.Step;
 import ru.graham.pages.MainPage;
 
 public class LoginSteps extends Section<LoginSteps> {
+
     private MainPage mainGrahamPage;
 
     public LoginSteps() {

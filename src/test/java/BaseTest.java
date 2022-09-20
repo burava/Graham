@@ -1,12 +1,15 @@
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
+import config.interfaces.Props;
+import helpers.ConfigService;
 import helpers.CustomAllureSelenide;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-public class BaseTest  {
+public class BaseTest {
+    protected static Props props = ConfigService.INSTANCE.props();
 
     @BeforeAll
     public static void setup(){
@@ -26,4 +29,5 @@ public class BaseTest  {
         Configuration.browserCapabilities = capabilities;
 
     }
+
 }

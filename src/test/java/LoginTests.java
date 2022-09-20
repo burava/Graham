@@ -9,9 +9,8 @@ public class LoginTests extends BaseTest {
     @ParameterizedTest(name = "{displayName} {arguments}")
     @MethodSource("helpers.TestRunData#gp0001")
     void gp0001(String login,String password){
-
         new LoginSteps()
                 .grahamLogInTest(login,password)
-                .checkUserName("Бурима Алексей1212");
+                .checkUserName("Бурима Алексей");
     }
 }

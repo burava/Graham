@@ -2,11 +2,13 @@ package ru;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebDriverRunner;
 import interfases.Assertions;
-import interfases.CustomAction;
 import interfases.Waits;
 import io.qameta.allure.Step;
+import org.openqa.selenium.JavascriptExecutor;
 
+import java.time.Duration;
 import java.util.function.Consumer;
 
 import static com.codeborne.selenide.Selenide.$x;
@@ -20,7 +22,7 @@ import static com.codeborne.selenide.Selenide.page;
  */
 
 public abstract class BasePage<CurrentPage, AbstractSystemPage> implements Clickable<CurrentPage, AbstractSystemPage>,
-        Fields<CurrentPage>, CustomAction<CurrentPage>, Waits<CurrentPage>, Assertions<CurrentPage> {
+        Fields<CurrentPage>, Waits<CurrentPage>, Assertions<CurrentPage> {
 
     protected static final long TIMEOUT = 6000L;
 
@@ -82,7 +84,7 @@ public abstract class BasePage<CurrentPage, AbstractSystemPage> implements Click
      */
     @Step("Получить текст элемента содержащего текст '{text}'")
     public CurrentPage getText(String text, int order, Consumer<String> saver) {
-        saver.accept(getElement(formXpath(textXpath, text, order)).waitUntil(Condition.visible, TIMEOUT).getText());
+        saver.accept(getElement(formXpath(textXpath, text, order)).should(Condition.visible, Duration.ofMillis(TIMEOUT)).getText());
         return (CurrentPage) this;
     }
 
@@ -95,9 +97,16 @@ public abstract class BasePage<CurrentPage, AbstractSystemPage> implements Click
         return (inputField.exists() ? inputField : selectField);
     }
 
+    @Step("Очистить значение поля")
+    public CurrentPage clearField(SelenideElement fieldName) {
+        JavascriptExecutor executor = (JavascriptExecutor) WebDriverRunner.getWebDriver();
+        executor.executeScript("arguments[0].value = '';", fieldName);
+        return (CurrentPage) this;
+    }
+
     @Step("Заполнить поле {fieldName} значением {fieldValue}")
     public CurrentPage setFieldValue(String fieldName, String fieldValue) {
-        SelenideElement inputField = getElement(formXpath(inputFieldXpath, fieldName, 1)).waitUntil(Condition.visible, TIMEOUT);
+        SelenideElement inputField = getElement(formXpath(inputFieldXpath, fieldName, 1)).should(Condition.visible, Duration.ofMillis(TIMEOUT));
         clearField(inputField);
         inputField.setValue(fieldValue);
         return (CurrentPage) this;
@@ -105,7 +114,7 @@ public abstract class BasePage<CurrentPage, AbstractSystemPage> implements Click
 
     @Step("Получить значение поля {fieldName}")
     public CurrentPage getFieldValue(String fieldName, Consumer<String> saver) {
-        saver.accept((getField(fieldName).waitUntil(Condition.visible, TIMEOUT).getValue()));
+        saver.accept((getField(fieldName)).should(Condition.visible, Duration.ofMillis(TIMEOUT)).getValue());
         return (CurrentPage) this;
     }
 
@@ -142,7 +151,7 @@ public abstract class BasePage<CurrentPage, AbstractSystemPage> implements Click
     }
 
     public CurrentPage clickElement(String xpath, String elementName, int order) {
-        getElement(formXpath(xpath, elementName, order)).waitUntil(CLICKABLE, TIMEOUT).click();
+        getElement(formXpath(xpath, elementName, order)).should(Condition.visible, Duration.ofMillis(TIMEOUT)).click();
         return (CurrentPage) this;
     }
 
@@ -194,7 +203,7 @@ public abstract class BasePage<CurrentPage, AbstractSystemPage> implements Click
 
     @Step("Нажать на поле '{fieldName}'")
     public CurrentPage clickField(String fieldName) {
-        getField(fieldName).waitUntil(Condition.visible, TIMEOUT).click();
+        getField(fieldName).should(Condition.visible, Duration.ofMillis(TIMEOUT)).click();
         return (CurrentPage) this;
     }
 

@@ -16,12 +16,10 @@ public class LoginPage {
      */
     @Step("Входим в Graham под пользователем")
     public MainPage login(String username, String password) {
-        $x("/html/body/div[2]/div[3]/div/div/button").click();
+        $x("//button[contains(text(), 'Хорошо')]").click();
         $x("//input[@name = 'login']").setValue(username);
         $x("//input[@name = 'password']").setValue(password);
-        //  SelenideElement loginBtn = $x("//button//font[contains(text(), 'Продолжить')]/../..");
-        $x("//*[@id='root']/div/div/div[2]/div/div[2]/div/div[1]/div/form/div[4]/button").click();
-
+        $x("//button[contains(text(), 'Продолжить')]").click();
         return Selenide.page(MainPage.class);
     }
 

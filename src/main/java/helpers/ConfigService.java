@@ -8,8 +8,9 @@ public enum ConfigService {
 
     private Props props;
 
-    public Props props(){
+    ConfigService() {props = ConfigFactory.create(Props.class);}
+
+    public Props props() {
         return props;
     }
-
 }

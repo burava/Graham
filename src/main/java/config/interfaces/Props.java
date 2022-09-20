@@ -1,14 +1,21 @@
 package config.interfaces;
 
 import org.aeonbits.owner.Config;
-import org.aeonbits.owner.Reloadable;
 
-public interface Props extends Reloadable {
-    @Config.Key("graham.user")
-    @Config.DefaultValue("No value")
+@Config.LoadPolicy(Config.LoadType.MERGE)
+@Config.Sources({
+        "system:properties",
+        "system:env",
+        "file:src/test/resources/props/config.properties"
+})
+
+public interface Props extends Config {
+
+    @Key("graham.user")
+    @DefaultValue("No value")
     String grahamUser();
 
-    @Config.Key("graham.password")
-    @Config.DefaultValue("No value")
+    @Key("graham.password")
+    @DefaultValue("No value")
     String grahamPassword();
 }

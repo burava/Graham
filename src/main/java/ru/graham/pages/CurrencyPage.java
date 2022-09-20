@@ -13,8 +13,4 @@ public class CurrencyPage extends GrahamPage<CurrencyPage>{
     protected String selectFieldXpath = null;
     protected String infoFieldXpath = null;
     protected String checkboxFieldXpath = null;
-
-
-
-
 }
