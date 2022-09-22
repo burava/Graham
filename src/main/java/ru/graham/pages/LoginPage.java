@@ -1,11 +1,12 @@
 package ru.graham.pages;
 
 import com.codeborne.selenide.Selenide;
+
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.$x;
 
-public class LoginPage {
+public class LoginPage extends GrahamPage<LoginPage> {
 
     /**
      * Осуществляет вход в систему под пользователем
@@ -19,7 +20,6 @@ public class LoginPage {
         $x("//button[contains(text(), 'Хорошо')]").click();
         $x("//input[@name = 'login']").setValue(username);
         $x("//input[@name = 'password']").setValue(password);
-        $x("//button[contains(text(), 'Продолжить')]").click();
         return Selenide.page(MainPage.class);
     }
 

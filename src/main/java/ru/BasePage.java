@@ -13,6 +13,7 @@ import java.util.function.Consumer;
 
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.page;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * Базовый класс для всех страниц. Реализует основные методы взаимодействия со страницей
@@ -23,6 +24,11 @@ import static com.codeborne.selenide.Selenide.page;
 
 public abstract class BasePage<CurrentPage, AbstractSystemPage> implements Clickable<CurrentPage, AbstractSystemPage>,
         Fields<CurrentPage>, Waits<CurrentPage>, Assertions<CurrentPage> {
+
+
+    public BasePage() {
+        System.out.println("Конструктор base");
+    }
 
     protected static final long TIMEOUT = 6000L;
 
@@ -58,6 +64,7 @@ public abstract class BasePage<CurrentPage, AbstractSystemPage> implements Click
      * @return web-элемент
      */
     protected SelenideElement getElement(String xpath) {
+        System.out.println(xpath);
         assertNotNull(xpath, "Не определен XPath для поиска элемента");
         return $x(xpath);
     }
@@ -84,12 +91,16 @@ public abstract class BasePage<CurrentPage, AbstractSystemPage> implements Click
      */
     @Step("Получить текст элемента содержащего текст '{text}'")
     public CurrentPage getText(String text, int order, Consumer<String> saver) {
+        System.out.println(text);
+        System.out.println(textXpath);
+        System.out.println(inputFieldXpath);
         saver.accept(getElement(formXpath(textXpath, text, order)).should(Condition.visible, Duration.ofMillis(TIMEOUT)).getText());
         return (CurrentPage) this;
     }
 
     public SelenideElement getField(String fieldName) {
         SelenideElement inputField = getElement(formXpath(inputFieldXpath, fieldName, 1));
+        System.out.println(inputField);
         if (selectFieldXpath == null) {
             return inputField;
         }

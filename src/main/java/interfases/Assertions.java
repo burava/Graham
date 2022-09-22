@@ -1,6 +1,5 @@
 package interfases;
 
-import helpers.CustomUtilities;
 import io.qameta.allure.Step;
 
 public interface Assertions<CurrentPage> {
@@ -22,5 +21,4 @@ public interface Assertions<CurrentPage> {
         org.junit.jupiter.api.Assertions.assertTrue(check, message);
         return (CurrentPage) this;
     }
-
 }

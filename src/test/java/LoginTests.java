@@ -5,12 +5,35 @@ import teststeps.LoginSteps;
 
 public class LoginTests extends BaseTest {
 
-    @DisplayName("Авторизация")
+    @DisplayName("Авторизация пользователя")
     @ParameterizedTest(name = "{displayName} {arguments}")
     @MethodSource("helpers.TestRunData#gp0001")
-    void gp0001(String login,String password){
+    void gp0001(String login, String password) {
         new LoginSteps()
-                .grahamLogInTest(login,password)
+                .grahamLogInTest(login, password)
+                .checkLogin("Логин", login)
+                .checkFieldIsEmpty("Пароль")
+                .clickProceed()
                 .checkUserName("Бурима Алексей");
+    }
+
+    @DisplayName("Запрет Авторизации")
+    @ParameterizedTest(name = "{displayName} {arguments}")
+    @MethodSource("helpers.TestRunData#gp0002")
+    void gp0002(String login, String password) {
+        new LoginSteps()
+                .grahamLogInTest(login, password)
+                .clickProceed()
+                .moveExPoint("Логин");
+    }
+
+    @DisplayName("Запрет Авторизации")
+    @ParameterizedTest(name = "{displayName} {arguments}")
+    @MethodSource("helpers.TestRunData#gp0002_2")
+    void gp0002_2(String login, String password) {
+        new LoginSteps()
+                .grahamLogInTest(login, password)
+                .clickProceed()
+                .moveExPoint("Логин", "Пароль");
     }
 }
